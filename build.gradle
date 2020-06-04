@@ -1,0 +1,33 @@
+plugins {
+    id 'application'
+    id "io.github.krakowski.jextract" version "0.1.0"
+}
+
+group = 'io.github.krakowski'
+version = '1.0'
+
+compileJava {
+    sourceCompatibility = '15'
+    targetCompatibility = '15'
+    options.encoding = 'UTF-8'
+    options.warnings = false
+}
+
+application {
+    mainClass = 'io.github.krakowski.NativeHelloWorld'
+}
+
+jextract {
+    // The library name
+    library = 'stdc++'
+
+    // The package under which all source files will be generated
+    targetPackage = 'org.unix'
+
+    // The header file jextract should parse
+    header = "${project.projectDir}/src/main/c/stdio.h"
+}
+
+wrapper {
+    gradleVersion = "6.5"
+}
