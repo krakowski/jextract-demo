@@ -1,17 +1,17 @@
 package io.github.krakowski;
 
-import org.unix.Cstring;
+import jdk.incubator.foreign.CSupport;
 
 import static org.unix.stdio_h.*;
 
 public final class NativeHelloWorld {
 
     public static void main(String... args) {
-        try (var format = Cstring.toCString("Hello %s");
-             var value = Cstring.toCString("World")) {
+        try (var format = CSupport.toCString("Hello %s");
+             var value = CSupport.toCString("World")) {
 
             // Call native printf function
-            printf(format.baseAddress(), value.baseAddress());
+            printf(format, value.address());
         }
     }
 }

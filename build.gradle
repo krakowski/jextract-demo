@@ -1,14 +1,14 @@
 plugins {
     id 'application'
-    id "io.github.krakowski.jextract" version "0.1.0"
+    id "io.github.krakowski.jextract" version "0.1.1"
 }
 
 group = 'io.github.krakowski'
 version = '1.0'
 
 compileJava {
-    sourceCompatibility = '15'
-    targetCompatibility = '15'
+    sourceCompatibility = '16'
+    targetCompatibility = '16'
     options.encoding = 'UTF-8'
     options.warnings = false
 }
@@ -29,5 +29,5 @@ jextract {
 }
 
 wrapper {
-    gradleVersion = "6.5"
+    gradleVersion = "6.5.1"
 }

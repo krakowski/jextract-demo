@@ -1,1 +1,3 @@
 rootProject.name = 'jextract-demo'
+
+includeBuild '../gradle-jextract'
