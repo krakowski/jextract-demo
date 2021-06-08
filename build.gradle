@@ -1,6 +1,6 @@
 plugins {
     id 'application'
-    id "io.github.krakowski.jextract" version "0.1.2"
+    id "io.github.krakowski.jextract" version "0.1.6"
 }
 
 group = 'io.github.krakowski'
@@ -18,16 +18,23 @@ application {
 }
 
 jextract {
-    // The library name
-    library = 'stdc++'
 
-    // The package under which all source files will be generated
-    targetPackage = 'org.unix'
+    fromHeader("${project.projectDir}/src/main/c/stdio.h") {
 
-    // The header file jextract should parse
-    header = "${project.projectDir}/src/main/c/stdio.h"
+        // The library name
+        libraries = [ 'stdc++' ]
+
+        // The package under which all source files will be generated
+        targetPackage = 'org.unix'
+
+        // The generated class name
+        className = 'Linux'
+
+        // Whitelist of functions
+        functions = [ 'printf' ]
+    }
 }
 
 wrapper {
-    gradleVersion = "6.5.1"
+    gradleVersion = '7.0.2'
 }

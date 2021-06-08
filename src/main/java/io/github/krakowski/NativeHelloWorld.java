@@ -1,16 +1,17 @@
 package io.github.krakowski;
 
-import jdk.incubator.foreign.CSupport;
+import jdk.incubator.foreign.CLinker;
+import jdk.incubator.foreign.ResourceScope;
 
-import static org.unix.stdio_h.*;
+import static org.unix.Linux.*;
 
 public final class NativeHelloWorld {
 
     public static void main(String... args) {
-        try (var format = CSupport.toCString("Hello %s");
-             var value = CSupport.toCString("World")) {
+        try (var scope = ResourceScope.newConfinedScope()) {
+            var format = CLinker.toCString("Hello %s", scope);
+            var value = CLinker.toCString("World", scope);
 
-            // Call native printf function
             printf(format, value.address());
         }
     }
