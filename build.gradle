@@ -1,16 +1,15 @@
 plugins {
     id 'application'
-    id "io.github.krakowski.jextract" version "0.1.6"
+    id 'io.github.krakowski.jextract' version '0.2.0'
 }
 
 group = 'io.github.krakowski'
 version = '1.0'
 
-compileJava {
-    sourceCompatibility = '16'
-    targetCompatibility = '16'
-    options.encoding = 'UTF-8'
-    options.warnings = false
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 application {
@@ -19,7 +18,7 @@ application {
 
 jextract {
 
-    fromHeader("${project.projectDir}/src/main/c/stdio.h") {
+    header("${project.projectDir}/src/main/c/stdio.h") {
 
         // The library name
         libraries = [ 'stdc++' ]
@@ -36,5 +35,5 @@ jextract {
 }
 
 wrapper {
-    gradleVersion = '7.0.2'
+    gradleVersion = '7.1'
 }

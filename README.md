@@ -2,12 +2,11 @@ A simple Hello World application using the [`gradle-jextract`](https://github.co
 
 ## :warning: &nbsp; Known issues
 
-  - Gradle is often incompatible with newly released Java versions, resulting in the error message `Unsupported class file major version`. The [`gradle-jextract`](https://github.com/krakowski/gradle-jextract) plugin can work around this by using a different JDK for compiling the sources. To enable this feature the `javaHome` property has to be set within your global `gradle.properties` usually located inside `${HOME}/.gradle`.
-  
+  - If your JDK is not installed in one of the default locations, Gradle can be instructed to look in a custom location. To enable this feature the `org.gradle.java.installations.paths` property has to be set within your global `gradle.properties` file usually located inside `${HOME}/.gradle`.
+    
     ```
-    javaHome=/path/to/your/panama/java/home
+    org.gradle.java.installations.paths=/custom/path/jdk17
     ```
-
 ## :rocket: &nbsp; Running the application
 
 Since this project uses Gradle's [`application`](https://docs.gradle.org/current/userguide/application_plugin.html) Plugin, the application can be started using one simple command.
