@@ -1,6 +1,7 @@
 plugins {
+    id 'idea'
     id 'application'
-    id 'io.github.krakowski.jextract' version '0.2.0'
+    id 'io.github.krakowski.jextract' version '0.2.2'
 }
 
 group = 'io.github.krakowski'
