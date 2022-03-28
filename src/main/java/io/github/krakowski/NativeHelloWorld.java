@@ -1,16 +1,17 @@
 package io.github.krakowski;
 
-import jdk.incubator.foreign.CLinker;
 import jdk.incubator.foreign.ResourceScope;
+import jdk.incubator.foreign.SegmentAllocator;
 
-import static org.unix.Linux.*;
+import static org.unix.Linux.printf;
 
 public final class NativeHelloWorld {
 
     public static void main(String... args) {
         try (var scope = ResourceScope.newConfinedScope()) {
-            var format = CLinker.toCString("Hello %s", scope);
-            var value = CLinker.toCString("World", scope);
+            var allocator = SegmentAllocator.nativeAllocator(scope);
+            var format = allocator.allocateUtf8String("Hello %s");
+            var value = allocator.allocateUtf8String("World");
 
             printf(format, value.address());
         }

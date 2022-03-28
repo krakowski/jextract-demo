@@ -5,7 +5,7 @@ A simple Hello World application using the [`gradle-jextract`](https://github.co
   - If your JDK is not installed in one of the default locations, Gradle can be instructed to look in a custom location. To enable this feature the `org.gradle.java.installations.paths` property has to be set within your global `gradle.properties` file usually located inside `${HOME}/.gradle`.
     
     ```
-    org.gradle.java.installations.paths=/custom/path/jdk17
+    org.gradle.java.installations.paths=/custom/path/jdk19
     ```
 ## :rocket: &nbsp; Running the application
 
