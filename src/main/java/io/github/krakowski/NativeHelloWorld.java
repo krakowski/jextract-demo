@@ -1,6 +1,6 @@
 package io.github.krakowski;
 
-import java.lang.foreign.MemorySession;
+import java.lang.foreign.Arena;
 
 import static org.unix.Linux.printf;
 
@@ -11,9 +11,9 @@ public final class NativeHelloWorld {
     }
 
     public static void print() {
-        try (var session = MemorySession.openConfined()) {
-            var format = session.allocateUtf8String("Hello %s");
-            var value = session.allocateUtf8String("World");
+        try (var arena = Arena.openConfined()) {
+            var format = arena.allocateUtf8String("Hello %s");
+            var value = arena.allocateUtf8String("World");
 
             printf(format, value.address());
         }
