@@ -11,7 +11,7 @@ public final class NativeHelloWorld {
     }
 
     public static void print() {
-        try (var arena = Arena.openConfined()) {
+        try (var arena = Arena.ofConfined()) {
             var format = arena.allocateUtf8String("Hello %s");
             var value = arena.allocateUtf8String("World");
 
