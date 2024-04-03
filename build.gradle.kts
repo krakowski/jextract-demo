@@ -1,7 +1,7 @@
 plugins {
     id("idea")
     id("application")
-    id("io.github.krakowski.jextract") version "0.4.1"
+    id("io.github.krakowski.jextract") version "0.5.0"
 }
 
 group = "io.github.krakowski"
@@ -9,12 +9,15 @@ version = "1.0"
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(22))
     }
 }
 
 application {
     mainClass = "io.github.krakowski.NativeHelloWorld"
+    applicationDefaultJvmArgs = listOf(
+        "--enable-native-access=ALL-UNNAMED"
+    )
 }
 
 tasks.jextract {

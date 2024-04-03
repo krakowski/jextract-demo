@@ -2,6 +2,7 @@ package io.github.krakowski;
 
 import java.lang.foreign.Arena;
 
+import static org.unix.Linux.C_POINTER;
 import static org.unix.Linux.printf;
 
 public final class NativeHelloWorld {
@@ -12,10 +13,11 @@ public final class NativeHelloWorld {
 
     public static void print() {
         try (var arena = Arena.ofConfined()) {
-            var format = arena.allocateUtf8String("Hello %s");
-            var value = arena.allocateUtf8String("World");
+            var format = arena.allocateFrom("Hello %s");
+            var value = arena.allocateFrom("World");
 
-            printf(format, value.address());
+            printf.makeInvoker(C_POINTER)
+                  .apply(format, value);
         }
     }
 }
